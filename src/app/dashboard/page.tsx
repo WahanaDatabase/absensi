@@ -3,24 +3,36 @@ import Image from "next/image";
 
 function page() {
   return (
-    <div className=" h-screen max-w-full bg-white text-black flex">
-      <div className="flex-col">
-        <div className="relative mt-[36px] ml-[24px] w-[279px] h-[78px]">
-          <Image src="/logo.png" fill alt="" />
+    <div className="flex-1 bg-[#FAFBFF]">
+      <div className="text-[24px] p-8 pt-[41px] pl-[71px]">Main Dashboard</div>
+      <div className="mt-[37px] bg-white flex w-5/6 px-12 py-8 mx-auto rounded-[30px] shadow-sm justify-between">
+        <div className="flex space-x-8">
+          <div className="w-[84px] h-[84px] relative ">
+            <Image src="/group.png" fill alt="karyawan" />
+          </div>
+          <div className=" bg-white  justify-center flex flex-col ">
+            <div className="text-[#ACACAC] text-[14px]">Jumlah Karyawan</div>
+            <div className="flex items-start text-[32px] font-semibold">30</div>
+          </div>
+          <div className=" border-l border-[#F0F0F0] pl-10"></div>
         </div>
-        <Navbar />
-      </div>
-      <div className="flex-1 bg-[#FAFBFF]">
-        <div className="text-[24px] p-8 pt-[41px] pl-[71px]">
-          Main Dashboard
+        <div className="flex space-x-8">
+          <div className="w-[84px] h-[84px] relative ">
+            <Image src="/group.png" fill alt="karyawan" />
+          </div>
+          <div className=" bg-white  justify-center flex flex-col ">
+            <div className="text-[#ACACAC] text-[14px]">Jumlah Lokasi</div>
+            <div className="flex items-start text-[32px] ont-semibold">02</div>
+          </div>
+          <div className=" border-l border-[#F0F0F0] pl-10"></div>
         </div>
-        <div className="mt-[37px]">
-          <div>
-            <div></div>
-            <div>
-              <div>Jumlah karyawan</div>
-              <div>30</div>
-            </div>
+        <div className="flex space-x-8">
+          <div className="w-[84px] h-[84px] relative ">
+            <Image src="/group.png" fill alt="karyawan" />
+          </div>
+          <div className=" bg-white justify-center flex flex-col ">
+            <div className="text-[#ACACAC] text-[14px]">Jumlah Group</div>
+            <div className="flex items-start text-[32px] font-semibold">03</div>
           </div>
         </div>
       </div>
