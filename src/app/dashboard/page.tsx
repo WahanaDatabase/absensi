@@ -11,7 +11,9 @@ function page() {
             <Image src="/group.png" fill alt="karyawan" />
           </div>
           <div className=" bg-white  justify-center flex flex-col ">
-            <div className="text-[#ACACAC] text-[14px]">Jumlah Karyawan</div>
+            <div className="text-[#ACACAC] text-[14px] font-normal">
+              Jumlah Karyawan
+            </div>
             <div className="flex items-start text-[32px] font-semibold">30</div>
           </div>
           <div className=" border-l border-[#F0F0F0] pl-10"></div>
@@ -21,7 +23,9 @@ function page() {
             <Image src="/group.png" fill alt="karyawan" />
           </div>
           <div className=" bg-white  justify-center flex flex-col ">
-            <div className="text-[#ACACAC] text-[14px]">Jumlah Lokasi</div>
+            <div className="text-[#ACACAC] text-[14px] font-normal">
+              Jumlah Lokasi
+            </div>
             <div className="flex items-start text-[32px] ont-semibold">02</div>
           </div>
           <div className=" border-l border-[#F0F0F0] pl-10"></div>
@@ -31,7 +35,9 @@ function page() {
             <Image src="/group.png" fill alt="karyawan" />
           </div>
           <div className=" bg-white justify-center flex flex-col ">
-            <div className="text-[#ACACAC] text-[14px]">Jumlah Group</div>
+            <div className="text-[#ACACAC] text-[14px] font-normal">
+              Jumlah Group
+            </div>
             <div className="flex items-start text-[32px] font-semibold">03</div>
           </div>
         </div>
