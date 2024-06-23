@@ -2,22 +2,23 @@ import { signOut } from "@/auth";
 import Image from "next/image";
 import React from "react";
 import NavItem from "./NavItem";
+import KeySquare from "../../../../public/key-square.svg";
 const navItems = [
-  { label: "Dashboard", icon: "/key-square.svg", path: "/dashboard" },
+  { label: "Dashboard", icon: <KeySquare />, path: "/dashboard" },
   {
     label: "Data Karyawan",
-    icon: "/key-square.svg",
+    icon: <KeySquare />,
     path: "/dashboard/data-karyawan",
   },
-  { label: "Data Lokasi", icon: "/key-square.svg", path: "/data-lokasi" },
+  { label: "Data Lokasi", icon: <KeySquare />, path: "/data-lokasi" },
   {
     label: "Registrasi Karyawan",
-    icon: "/key-square.svg",
+    icon: <KeySquare />,
     path: "/registrasi-karyawan",
   },
   {
     label: "Laporan Absensi",
-    icon: "/key-square.svg",
+    icon: <KeySquare />,
     path: "/laporan-absensi",
   },
 ];
@@ -28,8 +29,8 @@ function Navbar() {
         <NavItem key={index} item={item} index={index} />
       ))}
       <div className="flex space-x-2 ml-[39px]">
-        <div className="w-[24px] h-[24px] relative">
-          <Image src="/key-square.svg" fill alt="" />
+        <div className="w-[24px] h-[24px] relative ">
+          <KeySquare />
         </div>
         <form
           action={async () => {

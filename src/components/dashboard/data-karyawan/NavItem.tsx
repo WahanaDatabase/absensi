@@ -16,13 +16,12 @@ function NavItem({ item, index }: any) {
       }`}
       onClick={() => router.push(item.path)}
     >
-      <div className="w-[24px] h-[24px] relative">
-        <Image
-          src={item.icon}
-          fill
-          alt={`${item.label} icon`}
-          className={`${pathname === item.path ? "fill-current" : ""}`}
-        />
+      <div
+        className={`w-[24px] h-[24px] relative ${
+          pathname === item.path ? "text-white" : ""
+        } `}
+      >
+        {item.icon}
       </div>
       <div>{item.label}</div>
     </div>
