@@ -11,6 +11,7 @@ export async function authenticate(prevState: any,formData: FormData,
     const options = {
     email: formData.get('email'),
     password: formData.get('password'),
+    redirect:false
 };
 
   try {
@@ -27,7 +28,7 @@ export async function authenticate(prevState: any,formData: FormData,
 }
  }
    else if (error instanceof InvalidEmailError) {
-    console.log("hi",error.name)
+    
             switch (error.name) {
                 case "CredentialsSignin":
                      return { msg: "Invalid credentials" , status: "error"};
