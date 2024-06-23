@@ -9,7 +9,7 @@ export default function Layout({
   return (
     <>
       <div className=" h-screen max-w-full bg-white text-black flex">
-        <div className="flex-col shadow-sm">
+        <div className="flex-col w-[306px] shadow-sm">
           <div className="relative mt-[36px] ml-[24px] w-[271px] h-[76px]">
             <Image src="/logo.png" fill alt="" />
           </div>
