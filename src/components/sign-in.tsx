@@ -34,9 +34,6 @@ export function SignIn() {
                   required
                 />
               </div>
-              <p aria-live="polite" className="text-12 text-red-500">
-                {state?.msg == "Invalid Email" && state?.msg}
-              </p>
             </div>
             <div className="mt-4">
               <label
@@ -56,7 +53,7 @@ export function SignIn() {
                   minLength={3}
                 />
                 <p aria-live="polite" className="text-12 text-red-500">
-                  {state?.msg == "Invalid Password" && state?.msg}
+                  {state?.msg}
                 </p>
               </div>
             </div>
