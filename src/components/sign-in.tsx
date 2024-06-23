@@ -1,13 +1,13 @@
 "use client";
 import { authenticate } from "@/lib/actions";
-
-import { useFormState } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 
 export function SignIn() {
   const initialState = {
     msg: "",
   };
   const [state, formAction] = useFormState(authenticate, initialState);
+  const { pending } = useFormStatus();
 
   return (
     <>
@@ -58,7 +58,38 @@ export function SignIn() {
               </div>
             </div>
           </div>
-          <button className="mt-4 w-full text-black">Log in</button>
+          <button
+            disabled={pending}
+            className="disabled:text-gray-500 mt-4 w-full flex justify-center items-center text-black"
+          >
+            {pending ? (
+              <>
+                <svg
+                  className="mr-2 h-5 w-5 animate-spin text-gray-500"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Loading...
+              </>
+            ) : (
+              "Log in"
+            )}
+          </button>
         </div>
       </form>
     </>
