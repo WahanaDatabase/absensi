@@ -2,6 +2,8 @@
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation'
+import { InvalidEmailError} from './emailError';
+import { InvalidPasswordError } from './passwordError';
 
 export async function authenticate(prevState: any,formData: FormData,
 ) {
@@ -16,15 +18,28 @@ export async function authenticate(prevState: any,formData: FormData,
 
   
   } catch (error) {
-    if (error instanceof AuthError) {
-            switch (error.type) {
+ if(error instanceof InvalidPasswordError){
+  console.log("hi",error.name)
+ switch (error.name) {
+ case "InvalidPasswordError":
+                 return { msg: "Invalid Password" , status: "error"};
+
+}
+ }
+   else if (error instanceof InvalidEmailError) {
+    console.log("hi",error.name)
+            switch (error.name) {
                 case "CredentialsSignin":
                      return { msg: "Invalid credentials" , status: "error"};
            case "CredentialsSignin":
                     throw error;
+              case "InvalidEmailError":
+                 return { msg: "Invalid Email" , status: "error"};
+  
                 default:
                     return { msg: "Email atau Password salah", status: "error" };
             }
+         
         }
 
   }

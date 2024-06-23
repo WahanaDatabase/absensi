@@ -2,6 +2,8 @@
 import NextAuth from "next-auth"
  import Credentials from "next-auth/providers/credentials"
 import { getUserFromDb } from "./lib/getUserFromDb";
+import { InvalidEmailError} from "./lib/emailError";
+import { InvalidPasswordError } from "./lib/passwordError";
 
 const bcrypt = require('bcryptjs');
 
@@ -30,18 +32,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (!user) {
           // No user found, so this is their first attempt to login
           // meaning this is also the place you could do registration
-          throw new Error("User not found.")
+          throw new InvalidEmailError()
         }
       const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
           if (!isPasswordValid) {
-            throw new Error("Invalid email or password.");
+            throw new InvalidPasswordError()
           }
  
         // return user object with the their profile data
         return user as any
       } catch (error) {
-          console.error("Error in authorize function:", error);
-           throw new Error("CredentialsSignin");
+         console.error('Error in authorize function:', error);
+          throw error;
         }
     }
 })],
