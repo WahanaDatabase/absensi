@@ -10,16 +10,20 @@ const navItems = [
     icon: <KeySquare />,
     path: "/dashboard/data-karyawan",
   },
-  { label: "Data Lokasi", icon: <KeySquare />, path: "/data-lokasi" },
+  {
+    label: "Data Lokasi",
+    icon: <KeySquare />,
+    path: "/dashboard/data-lokasi",
+  },
   {
     label: "Registrasi Karyawan",
     icon: <KeySquare />,
-    path: "/registrasi-karyawan",
+    path: "/dashboard/registrasi-karyawan",
   },
   {
     label: "Laporan Absensi",
     icon: <KeySquare />,
-    path: "/laporan-absensi",
+    path: "/dashboard/laporan-absensi",
   },
 ];
 function Navbar() {
