@@ -1,6 +1,5 @@
 
 import NextAuth from "next-auth"
-import Google from "next-auth/providers/google"
  import Credentials from "next-auth/providers/credentials"
 import { getUserFromDb } from "./lib/getUserFromDb";
 
@@ -14,7 +13,7 @@ export async function saltAndHashPassword(password:any) {
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [Google, Credentials({
+  providers: [ Credentials({
       // You can specify which fields should be submitted, by adding keys to the `credentials` object.
       // e.g. domain, username, password, 2FA token, etc.
       credentials: {
@@ -24,29 +23,42 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async authorize(credentials) {
   try {
         // logic to salt and hash password
-        const pwHash = saltAndHashPassword(credentials.password)
- 
+        const pwHash = await saltAndHashPassword(credentials.password)
+     
         // logic to verify if user exists
-       const user = await getUserFromDb(credentials.email, pwHash)
- 
+       const user = await getUserFromDb(credentials.email)
         if (!user) {
           // No user found, so this is their first attempt to login
           // meaning this is also the place you could do registration
           throw new Error("User not found.")
         }
+      const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+          if (!isPasswordValid) {
+            throw new Error("Invalid email or password.");
+          }
  
         // return user object with the their profile data
         return user as any
       } catch (error) {
           console.error("Error in authorize function:", error);
-          return null;
+           throw new Error("CredentialsSignin");
         }
     }
 })],
       pages: {
     signIn: "/",
   },
-    
+    callbacks: {
+    async signIn({ user }) {
+      // If user is returned, signIn was successful
+      if (user) {
+        return true; // Return true to indicate sign-in success
+      }
+
+      // If no user is returned, signIn failed
+      return false; // Return false to indicate sign-in failure
+    },
+  },
 })
 
 

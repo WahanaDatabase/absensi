@@ -1,11 +1,21 @@
+"use client";
 import { authenticate } from "@/lib/actions";
 
+import { useFormState } from "react-dom";
+
 export function SignIn() {
+  const initialState = {
+    msg: "",
+  };
+  const [state, formAction] = useFormState(authenticate, initialState);
+
   return (
     <>
-      <form action={authenticate}>
+      <form action={formAction}>
         <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-          <h1 className={` mb-3 text-2xl`}>Please log in to continue.</h1>
+          <h1 className={` mb-3 text-2xl text-black`}>
+            Please log in to continue.
+          </h1>
           <div className="w-full">
             <div>
               <label
@@ -42,6 +52,9 @@ export function SignIn() {
                   required
                   minLength={3}
                 />
+                <p aria-live="polite" className="text-12 text-red-500">
+                  {state?.msg}
+                </p>
               </div>
             </div>
           </div>
