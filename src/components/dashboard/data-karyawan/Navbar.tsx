@@ -3,26 +3,31 @@ import Image from "next/image";
 import React from "react";
 import NavItem from "./NavItem";
 import KeySquare from "../../../../public/key-square.svg";
+import UserSquare from "../../../../public/user-square.svg";
+import Locate from "../../../../public/locate.svg";
+import Register from "../../../../public/register.svg";
+import Report from "../../../../public/report.svg";
+import Out from "../../../../public/out.svg";
 const navItems = [
   { label: "Dashboard", icon: <KeySquare />, path: "/dashboard" },
   {
     label: "Data Karyawan",
-    icon: <KeySquare />,
+    icon: <UserSquare />,
     path: "/dashboard/data-karyawan",
   },
   {
     label: "Data Lokasi",
-    icon: <KeySquare />,
+    icon: <Locate />,
     path: "/dashboard/data-lokasi",
   },
   {
     label: "Registrasi Karyawan",
-    icon: <KeySquare />,
+    icon: <Register />,
     path: "/dashboard/registrasi-karyawan",
   },
   {
     label: "Laporan Absensi",
-    icon: <KeySquare />,
+    icon: <Report />,
     path: "/dashboard/laporan-absensi",
   },
 ];
@@ -34,7 +39,7 @@ function Navbar() {
       ))}
       <div className="flex space-x-2 ml-[39px]">
         <div className="w-[24px] h-[24px] relative ">
-          <KeySquare />
+          <Out />
         </div>
         <form
           action={async () => {
@@ -42,7 +47,7 @@ function Navbar() {
             await signOut({ redirectTo: "/" });
           }}
         >
-          <button>Log Out</button>
+          <button>Logout</button>
         </form>
       </div>
     </div>
