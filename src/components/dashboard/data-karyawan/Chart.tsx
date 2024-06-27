@@ -73,15 +73,43 @@ const monthlyData = {
   ],
 };
 
+const barOptions: any = {
+  maintainAspectRatio: false,
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "bottom",
+      labels: {
+        usePointStyle: true, // Use point style
+        pointStyle: "circle", // Set point style to circle
+      },
+    },
+  },
+};
+
+const pieOptions: any = {
+  maintainAspectRatio: false,
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "bottom",
+      labels: {
+        usePointStyle: true, // Use point style
+        pointStyle: "circle", // Set point style to circle
+      },
+    },
+  },
+};
+
 const Charts = () => (
   <div className="charts flex space-x-[15px] mt-[37px] ml-[71px]  mx-auto w-3/2">
-    <div className="weekly-chart w-[645px] rounded-[30px] bg-white p-4     ">
+    <div className="weekly-chart w-[645px] h-[351px] rounded-[30px] bg-white p-7         ">
       <h2>Data Absen Mingguan</h2>
-      <Bar data={weeklyData} />
+      <Bar data={weeklyData} options={barOptions} />
     </div>
-    <div className="monthly-chart w-[378px] p-4 rounded-[30px] bg-white">
+    <div className="monthly-chart w-[378px] p-7 h-[351px] rounded-[30px] bg-white">
       <h2>Data Absen Bulanan</h2>
-      <Pie data={monthlyData} />
+      <Pie data={monthlyData} options={pieOptions} />
     </div>
   </div>
 );
