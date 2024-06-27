@@ -1,3 +1,4 @@
+import Charts from "@/components/dashboard/data-karyawan/Chart";
 import Navbar from "@/components/dashboard/data-karyawan/Navbar";
 import Image from "next/image";
 
@@ -26,7 +27,7 @@ function page() {
             <div className="text-[#ACACAC] text-[14px] font-normal">
               Jumlah Lokasi
             </div>
-            <div className="flex items-start text-[32px] ont-semibold">02</div>
+            <div className="flex items-start text-[32px] font-semibold">02</div>
           </div>
           <div className=" border-l border-[#F0F0F0] pl-10"></div>
         </div>
@@ -42,6 +43,7 @@ function page() {
           </div>
         </div>
       </div>
+      <Charts />
     </div>
   );
 }
