@@ -1,7 +1,7 @@
 function page() {
   return (
     <div className="flex-1 bg-[#FAFBFF]">
-      <div className="text-[24px]  pt-[41px] pl-[71px]">Tambahkan Karyawan</div>
+      <div className="text-[24px]  pt-[41px] pl-[71px]">Laporan Absensi</div>
 
       <div className=" w-[968px] mt-[21px] shadow-sm h-[583px] ml-[71px] rounded-[30px] bg-white p-7">
         <div className="flex justify-between items-center mb-4">
