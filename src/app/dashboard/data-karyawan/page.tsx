@@ -16,8 +16,8 @@ function page() {
               <option>25</option>
               <option>50</option>
               <option>100</option>
-            </select>
-            <></> entries
+            </select>{" "}
+            entries
           </div>
           <div>
             <input
