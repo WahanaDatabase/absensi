@@ -1,9 +1,33 @@
+import Image from "next/image";
+import Link from "next/link";
+
 function page() {
   return (
     <div className="flex-1 bg-[#FAFBFF]">
       <div className="text-[24px]  pt-[41px] pl-[71px]">Laporan Absensi</div>
+      <div className="mt-[12px] bg-white flex w-[968px] px-12 py-3 mx-auto rounded-[30px] shadow-sm justify-between">
+        <div className="flex space-x-8">
+          <div className=" bg-white  justify-center flex items-center">
+            <div className="text-[#ACACAC] text-[14px] font-normal">Bulan</div>
+            <input placeholder="Pilih Bulan" />
+            <div className="text-[#ACACAC] text-[14px] font-normal">Bulan</div>
+            <input placeholder="Pilih Bulan" />
+          </div>
+        </div>
 
-      <div className=" w-[968px] mt-[21px] shadow-sm h-[583px] ml-[71px] rounded-[30px] bg-white p-7">
+        <div className="flex space-x-8 items-center justify-center">
+          <div className=" ml-[71px] rounded-[4px] flex items-center justify-center bg-[#16C098]/[38%] w-[180px] h-[36px]">
+            <Link
+              href={`/dashboard/registrasi-karyawan`}
+              className=" text-[#008767]   text-[14px]"
+            >
+              {" "}
+              Download
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className=" w-[968px] mt-[15px] shadow-sm h-[583px] ml-[71px] rounded-[30px] bg-white p-7">
         <div className="flex justify-between items-center mb-4">
           <div>
             Show

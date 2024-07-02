@@ -6,7 +6,7 @@ function page() {
   return (
     <div className="flex-1 bg-[#FAFBFF]">
       <div className="text-[24px] p-8 pt-[41px] pl-[71px]">Main Dashboard</div>
-      <div className="mt-[37px] bg-white flex w-5/6 px-12 py-8 mx-auto rounded-[30px] shadow-sm justify-between">
+      <div className="mt-[37px] bg-white flex w-[968px] px-12 py-8 mx-auto rounded-[30px] shadow-sm justify-between">
         <div className="flex space-x-8">
           <div className="w-[84px] h-[84px] relative ">
             <Image src="/group.png" fill alt="karyawan" />
