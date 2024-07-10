@@ -9,9 +9,47 @@ generator client {
 }
 
 model User {
-    id        Int      @id @default(autoincrement())
-    createdAt DateTime @default(now())
-    email     String   @unique
-    name      String?
-    password  String   @default("alice")
+    id          Int          @id @default(autoincrement())
+    createdAt   DateTime     @default(now())
+    email       String       @unique
+    name        String
+    password    String
+    group       String
+    no_hp       String
+    attendance  Attendance[]
+    permissions Permission[]
+    role        String
+}
+
+model Permission {
+    id            Int      @id @default(autoincrement())
+    id_karyawan   Int
+    nama_karyawan String
+    tanggal_izin  DateTime
+    bukti_izin    String
+    Employee      User     @relation(fields: [id_karyawan], references: [id])
+}
+
+model Attendance {
+    id          Int      @id @default(autoincrement())
+    id_karyawan Int
+    id_location Int
+    nama        String
+    group       String
+    location    String
+    tanggal     DateTime
+    jam_masuk   DateTime
+    jam_keluar  DateTime
+    status      String
+    Employee    User     @relation(fields: [id_karyawan], references: [id])
+    Location    Location @relation(fields: [id_location], references: [id])
+}
+
+model Location {
+    id            Int          @id @default(autoincrement())
+    nama_location String
+    latitude      Float
+    longitude     Float
+    qr_code       String
+    attendance    Attendance[]
 }
