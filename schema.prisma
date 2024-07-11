@@ -16,33 +16,33 @@ model User {
     password    String
     group       String
     no_hp       String
-    attendance  Attendance[]
-    permissions Permission[]
+    attendances Attendance[] // One-to-many relation with Attendance
+    permissions Permission[] // One-to-many relation with Permission
     role        String
 }
 
 model Permission {
-    id            Int      @id @default(autoincrement())
+    id            Int              @id @default(autoincrement())
     id_karyawan   Int
     nama_karyawan String
-    tanggal_izin  DateTime
+    tanggal_izin  DateTime         @default(now())
     bukti_izin    String
-    Employee      User     @relation(fields: [id_karyawan], references: [id])
+    status        PermissionStatus // Custom enum type for permission statuses
+    Employee      User             @relation(fields: [id_karyawan], references: [id])
 }
 
 model Attendance {
-    id          Int      @id @default(autoincrement())
+    id          Int              @id @default(autoincrement())
     id_karyawan Int
     id_location Int
     nama        String
     group       String
-    location    String
-    tanggal     DateTime
-    jam_masuk   DateTime
-    jam_keluar  DateTime
-    status      String
-    Employee    User     @relation(fields: [id_karyawan], references: [id])
-    Location    Location @relation(fields: [id_location], references: [id])
+    tanggal     DateTime         @default(now())
+    jam_masuk   DateTime?        @default(now())
+    jam_keluar  DateTime?        @default(now())
+    status      AttendanceStatus // Custom enum type for attendance statuses
+    Employee    User             @relation(fields: [id_karyawan], references: [id])
+    Location    Location         @relation(fields: [id_location], references: [id])
 }
 
 model Location {
@@ -51,5 +51,18 @@ model Location {
     latitude      Float
     longitude     Float
     qr_code       String
-    attendance    Attendance[]
+    attendances   Attendance[] // One-to-many relation with Attendance
+}
+
+// Enum definitions
+enum PermissionStatus {
+    IZIN
+    ALPHA
+}
+
+enum AttendanceStatus {
+    TELAT
+    IZIN
+    ALPHA
+    HADIR
 }
