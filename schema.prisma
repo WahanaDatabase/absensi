@@ -35,8 +35,6 @@ model Attendance {
     id          Int              @id @default(autoincrement())
     id_karyawan Int
     id_location Int
-    nama        String
-    group       String
     tanggal     DateTime         @default(now())
     jam_masuk   DateTime?        @default(now())
     jam_keluar  DateTime?        @default(now())
