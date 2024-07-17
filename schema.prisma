@@ -63,4 +63,5 @@ enum AttendanceStatus {
     IZIN
     ALPHA
     HADIR
+    MISSED
 }
