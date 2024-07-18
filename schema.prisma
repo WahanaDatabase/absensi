@@ -34,13 +34,13 @@ model Permission {
 model Attendance {
     id          Int              @id @default(autoincrement())
     id_karyawan Int
-    id_location Int
+    id_location Int?
     tanggal     DateTime         @default(now())
     jam_masuk   DateTime?        @default(now())
     jam_keluar  DateTime?        @default(now())
     status      AttendanceStatus // Custom enum type for attendance statuses
     Employee    User             @relation(fields: [id_karyawan], references: [id])
-    Location    Location         @relation(fields: [id_location], references: [id])
+    Location    Location?        @relation(fields: [id_location], references: [id], onDelete: SetNull, onUpdate: Cascade)
 }
 
 model Location {
