@@ -1,17 +1,70 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
-function page() {
+function Page() {
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  const years = [];
+  for (let i = new Date().getFullYear(); i >= 2000; i--) {
+    years.push(i);
+  }
+
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+
   return (
     <div className="flex-1 bg-[#FAFBFF]">
       <div className="text-[24px]  pt-[41px] pl-[71px]">Laporan Absensi</div>
       <div className="mt-[12px] bg-white flex w-[968px] px-12 py-3 mx-auto rounded-[30px] shadow-sm justify-between">
         <div className="flex space-x-8">
-          <div className=" bg-white  justify-center flex items-center">
+          <div className="bg-white justify-center flex items-center">
             <div className="text-[#ACACAC] text-[14px] font-normal">Bulan</div>
-            <input placeholder="Pilih Bulan" />
-            <div className="text-[#ACACAC] text-[14px] font-normal">Bulan</div>
-            <input placeholder="Pilih Bulan" />
+            <select
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+              className="ml-2 border border-gray-300 rounded-md px-2 py-1"
+            >
+              <option value="" disabled>
+                Pilih Bulan
+              </option>
+              {months.map((month, index) => (
+                <option key={index} value={month}>
+                  {month}
+                </option>
+              ))}
+            </select>
+            <div className="text-[#ACACAC] text-[14px] font-normal ml-4">
+              Tahun
+            </div>
+            <select
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(e.target.value)}
+              className="ml-2 border border-gray-300 rounded-md px-2 py-1"
+            >
+              <option value="" disabled>
+                Pilih Tahun
+              </option>
+              {years.map((year, index) => (
+                <option key={index} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
@@ -184,4 +237,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
