@@ -45,6 +45,7 @@ model Attendance {
 
 model Location {
     id            Int          @id @default(autoincrement())
+    createdAt     DateTime     @default(now())
     nama_location String
     latitude      Float
     longitude     Float
