@@ -58,7 +58,7 @@ async function page() {
           </div>
         </div>
       </div>
-      <Charts />
+      <Charts attendances={attendances} />
     </div>
   );
 }
