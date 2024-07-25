@@ -1,8 +1,17 @@
 import Charts from "@/components/dashboard/data-karyawan/Chart";
 import Navbar from "@/components/dashboard/data-karyawan/Navbar";
+import { getAttendancesFromDb } from "@/lib/getAttendancesFromDb";
+import { getLocationsFromDb } from "@/lib/getLocationsFromDb";
+import { getUsersFromDb } from "@/lib/getUsersFromDb";
 import Image from "next/image";
 
-function page() {
+async function page() {
+  const users = await getUsersFromDb();
+  const locations = await getLocationsFromDb();
+  const attendances = await getAttendancesFromDb();
+  const jumlahKaryawan = users.length;
+  const jumlahLokasi = locations.length;
+  const jumlahAbsensi = attendances.length;
   return (
     <div className="flex-1 bg-[#FAFBFF]">
       <div className="text-[24px] p-8 pt-[41px] pl-[71px]">Main Dashboard</div>
@@ -15,7 +24,9 @@ function page() {
             <div className="text-[#ACACAC] text-[14px] font-normal">
               Jumlah Karyawan
             </div>
-            <div className="flex items-start text-[32px] font-semibold">30</div>
+            <div className="flex items-start text-[32px] font-semibold">
+              {jumlahKaryawan}
+            </div>
           </div>
           <div className=" border-l border-[#F0F0F0] pl-10"></div>
         </div>
@@ -27,7 +38,9 @@ function page() {
             <div className="text-[#ACACAC] text-[14px] font-normal">
               Jumlah Lokasi
             </div>
-            <div className="flex items-start text-[32px] font-semibold">02</div>
+            <div className="flex items-start text-[32px] font-semibold">
+              {jumlahLokasi}
+            </div>
           </div>
           <div className=" border-l border-[#F0F0F0] pl-10"></div>
         </div>
@@ -37,9 +50,11 @@ function page() {
           </div>
           <div className=" bg-white justify-center flex flex-col ">
             <div className="text-[#ACACAC] text-[14px] font-normal">
-              Jumlah Group
+              Jumlah Absensi
             </div>
-            <div className="flex items-start text-[32px] font-semibold">03</div>
+            <div className="flex items-start text-[32px] font-semibold">
+              {jumlahAbsensi}
+            </div>
           </div>
         </div>
       </div>
