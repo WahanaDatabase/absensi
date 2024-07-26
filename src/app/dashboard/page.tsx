@@ -1,5 +1,4 @@
 import Charts from "@/components/dashboard/data-karyawan/Chart";
-import Navbar from "@/components/dashboard/data-karyawan/Navbar";
 import { getAttendancesFromDb } from "@/lib/getAttendancesFromDb";
 import { getLocationsFromDb } from "@/lib/getLocationsFromDb";
 import { getUsersFromDb } from "@/lib/getUsersFromDb";
