@@ -158,12 +158,12 @@ function Absensi({ attendances }: any) {
             </tr>
           </thead>
           <tbody>
-            {paginatedUsers.map((employee: Attendance, index: any) => (
+            {paginatedUsers.map((employee: any, index: any) => (
               <tr key={index}>
                 <td className="border px-4 py-2">{startIndex + index + 1}</td>
-                <td className="border px-4 py-2">{employee.id_karyawan}</td>
+                <td className="border px-4 py-2">{employee.Employee.name}</td>
                 <td className="border px-4 py-2">{employee.id}</td>
-                <td className="border px-4 py-2">{employee.id_karyawan}</td>
+                <td className="border px-4 py-2">{employee.Employee.group}</td>
                 <td className="border px-4 py-2">{employee.status}</td>
               </tr>
             ))}
