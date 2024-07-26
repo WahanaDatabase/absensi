@@ -9,29 +9,39 @@ import Register from "../../../../public/register.svg";
 import Report from "../../../../public/report.svg";
 import Out from "../../../../public/out.svg";
 const navItems = [
-  { label: "Dashboard", icon: <KeySquare />, path: "/dashboard" },
+  {
+    label: "Dashboard",
+    icon: <KeySquare />,
+    path: "/dashboard",
+    isDynamic: false,
+  },
   {
     label: "Data Karyawan",
     icon: <UserSquare />,
     path: "/dashboard/data-karyawan",
+    isDynamic: true,
   },
   {
     label: "Data Lokasi",
     icon: <Locate />,
     path: "/dashboard/data-lokasi",
+    isDynamic: false,
   },
   {
     label: "Registrasi Karyawan",
     icon: <Register />,
     path: "/dashboard/registrasi-karyawan",
+    isDynamic: false,
   },
   {
     label: "Laporan Absensi",
     icon: <Report />,
     path: "/dashboard/laporan-absensi",
+    isDynamic: false,
   },
 ];
-function Navbar() {
+
+function Navbar(params: any) {
   return (
     <div className="text-[#9197B3] space-y-3 mt-[20px]">
       {navItems.map((item, index) => (
