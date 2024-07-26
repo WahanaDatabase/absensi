@@ -2,8 +2,9 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import ShowEntries from "./ShowEntries";
-import { Attendance } from "@prisma/client";
 import { useRouter } from "next/navigation";
+import jsPDF from "jspdf";
+import autoTable from "jspdf-autotable"; // Add this import
 
 function Absensi({ attendances }: any) {
   const router = useRouter();
@@ -11,6 +12,9 @@ function Absensi({ attendances }: any) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("Newest");
+  const [selectedMonth, setSelectedMonth] = useState("");
+  const [selectedYear, setSelectedYear] = useState("");
+
   const handleRowClick = (id: any) => {
     router.push(`/dashboard/data-karyawan/${id}`);
   };
@@ -29,47 +33,90 @@ function Absensi({ attendances }: any) {
     setCurrentPage(1); // Reset to first page on sort change
   };
 
-  // Aggregate attendance data
-  const aggregatedData = attendances.reduce((acc: any, attendance: any) => {
-    const id = attendance.id_karyawan;
+  const handleMonthChange = (event: any) => {
+    setSelectedMonth(event.target.value);
+    setCurrentPage(1); // Reset to first page on month change
+  };
 
-    // Initialize the data if it's not already present
-    if (!acc[id]) {
-      acc[id] = {
-        id,
-        name: attendance.Employee.name,
-        group: attendance.Employee.group,
-        Hadir: 0,
-        Izin: 0,
-        Alpha: 0,
-        Telat: 0,
-        Missed: 0,
-      };
-    }
+  const handleYearChange = (event: any) => {
+    setSelectedYear(event.target.value);
+    setCurrentPage(1); // Reset to first page on year change
+  };
 
-    // Increment the count for the current status
-    switch (attendance.status) {
-      case "HADIR":
-        acc[id].Hadir++;
-        break;
-      case "IZIN":
-        acc[id].Izin++;
-        break;
-      case "ALPHA":
-        acc[id].Alpha++;
-        break;
-      case "TELAT":
-        acc[id].Telat++;
-        break;
-      case "MISSED":
-        acc[id].Missed++;
-        break;
-      default:
-        break;
-    }
+  // Convert month name to month index (0-11)
+  const getMonthIndex = (month: string) => {
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    return months.indexOf(month);
+  };
 
-    return acc;
-  }, {});
+  // Filter and aggregate attendance data based on month and year
+  const filteredAttendances = attendances.filter((attendance: any) => {
+    const date = new Date(attendance.tanggal);
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    const monthMatches =
+      !selectedMonth || month === getMonthIndex(selectedMonth);
+    const yearMatches = !selectedYear || year === parseInt(selectedYear);
+
+    return monthMatches && yearMatches;
+  });
+
+  // Aggregate filtered attendance data
+  const aggregatedData = filteredAttendances.reduce(
+    (acc: any, attendance: any) => {
+      const id = attendance.id_karyawan;
+
+      if (!acc[id]) {
+        acc[id] = {
+          id,
+          name: attendance.Employee.name,
+          group: attendance.Employee.group,
+          Hadir: 0,
+          Izin: 0,
+          Alpha: 0,
+          Telat: 0,
+          Missed: 0,
+        };
+      }
+
+      switch (attendance.status) {
+        case "HADIR":
+          acc[id].Hadir++;
+          break;
+        case "IZIN":
+          acc[id].Izin++;
+          break;
+        case "ALPHA":
+          acc[id].Alpha++;
+          break;
+        case "TELAT":
+          acc[id].Telat++;
+          break;
+        case "MISSED":
+          acc[id].Missed++;
+          break;
+        default:
+          break;
+      }
+
+      return acc;
+    },
+    {}
+  );
 
   // Convert aggregated data to an array
   const aggregatedArray = Object.values(aggregatedData);
@@ -113,8 +160,38 @@ function Absensi({ attendances }: any) {
     years.push(i);
   }
 
-  const [selectedMonth, setSelectedMonth] = useState("");
-  const [selectedYear, setSelectedYear] = useState("");
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+    doc.text("Absensi Report", 14, 16);
+    autoTable(doc, {
+      startY: 22,
+      head: [
+        [
+          "NO",
+          "Nama",
+          "ID Karyawan",
+          "Group",
+          "Hadir",
+          "Izin",
+          "Alpha",
+          "Telat",
+          "Missed",
+        ],
+      ],
+      body: paginatedUsers.map((employee: any, index: any) => [
+        startIndex + index + 1,
+        employee.name,
+        employee.id,
+        employee.group,
+        employee.Hadir,
+        employee.Izin,
+        employee.Alpha,
+        employee.Telat,
+        employee.Missed,
+      ]),
+    });
+    doc.save("absensi-report.pdf");
+  };
 
   return (
     <div className="mb-10 flex flex-col">
@@ -124,7 +201,7 @@ function Absensi({ attendances }: any) {
             <div className="text-[#ACACAC] text-[14px] font-normal">Bulan</div>
             <select
               value={selectedMonth}
-              onChange={(e) => setSelectedMonth(e.target.value)}
+              onChange={handleMonthChange}
               className="ml-2 border border-gray-300 rounded-md px-2 py-1"
             >
               <option value="" disabled>
@@ -141,7 +218,7 @@ function Absensi({ attendances }: any) {
             </div>
             <select
               value={selectedYear}
-              onChange={(e) => setSelectedYear(e.target.value)}
+              onChange={handleYearChange}
               className="ml-2 border border-gray-300 rounded-md px-2 py-1"
             >
               <option value="" disabled>
@@ -158,12 +235,12 @@ function Absensi({ attendances }: any) {
 
         <div className="flex space-x-8 items-center justify-center">
           <div className="ml-[71px] rounded-[4px] flex items-center justify-center bg-[#16C098]/[38%] w-[180px] h-[36px]">
-            <Link
-              href={`/dashboard/registrasi-karyawan`}
-              className="text-[#008767] text-[14px]"
+            <button
+              onClick={downloadPDF}
+              className="text-[#008767] text-[14px] w-full h-full"
             >
-              Download
-            </Link>
+              Download PDF
+            </button>
           </div>
         </div>
       </div>
