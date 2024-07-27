@@ -34,6 +34,12 @@ const navItems = [
     isDynamic: false,
   },
   {
+    label: "Registrasi Lokasi",
+    icon: <Locate />,
+    path: "/dashboard/registrasi-lokasi",
+    isDynamic: false,
+  },
+  {
     label: "Laporan Absensi",
     icon: <Report />,
     path: "/dashboard/laporan-absensi",

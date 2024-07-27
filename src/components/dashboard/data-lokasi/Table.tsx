@@ -11,10 +11,6 @@ function Table({ locations }: any) {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOrder, setSortOrder] = useState("Newest");
 
-  const handleRowClick = (id: any) => {
-    router.push(`/dashboard/data-karyawan/${id}`);
-  };
-
   const handlePageClick = (page: any) => {
     setCurrentPage(page);
   };
@@ -87,11 +83,7 @@ function Table({ locations }: any) {
         </thead>
         <tbody>
           {paginatedUsers.map((employee: Location, index: any) => (
-            <tr
-              className="cursor-pointer hover:bg-gray-100"
-              key={employee.id}
-              onClick={() => handleRowClick(employee.id)}
-            >
+            <tr className="cursor-pointer hover:bg-gray-100" key={employee.id}>
               <td className="border px-4 py-2">{startIndex + index + 1}</td>
               <td className="border px-4 py-2">{employee.nama_location}</td>
               <td className="border px-4 py-2">{employee.latitude}</td>
