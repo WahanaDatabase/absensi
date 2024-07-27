@@ -1,3 +1,4 @@
+import { createUser } from "@/lib/actions";
 import Image from "next/image";
 
 function Page() {
@@ -16,30 +17,27 @@ function Page() {
           </div>
           <div className="flex-1">
             <h2 className="text-xl font-bold mb-5">Data Karyawan</h2>
-            <form className="space-y-5">
+            <form className="space-y-5" action={createUser}>
               <div>
                 <input
                   type="text"
+                  name="name"
                   placeholder="Nama Karyawan"
                   className="w-full border-b border-gray-300 px-3 py-2 mt-1"
                 />
               </div>
+
               <div>
                 <input
                   type="text"
-                  placeholder="ID Karyawan"
-                  className="w-full border-b border-gray-300 px-3 py-2 mt-1"
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
+                  name="group"
                   placeholder="Group"
                   className="w-full border-b border-gray-300 px-3 py-2 mt-1"
                 />
               </div>
               <div>
                 <input
+                  name="email"
                   type="email"
                   placeholder="Email"
                   className="w-full border-b border-gray-300 px-3 py-2 mt-1"
@@ -47,6 +45,7 @@ function Page() {
               </div>
               <div>
                 <input
+                  name="no"
                   type="tel"
                   placeholder="No HP"
                   className="w-full border-b border-gray-300 px-3 py-2 mt-1"
@@ -54,6 +53,7 @@ function Page() {
               </div>
               <div>
                 <input
+                  name="password"
                   type="password"
                   placeholder="Password"
                   className="w-full border-b border-gray-300 px-3 py-2 mt-1"

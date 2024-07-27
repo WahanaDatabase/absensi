@@ -3,6 +3,35 @@ import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation'
 import { createLocationToDb } from './createLocationToDb';
+import { createUserToDb } from './createUserToDb';
+export async function createUser(formData:FormData) {
+
+
+  const rawFormData = {
+    name: formData.get('name'),
+    group: formData.get('group'),
+    email: formData.get('email'),
+    no:formData.get('no'),
+    password:formData.get('password')
+  };
+
+  // Ensure all form data fields are not null
+  if (!rawFormData.name || !rawFormData.group || !rawFormData.email || !rawFormData.no|| !rawFormData.password ) {
+    throw new Error('All form fields must be filled out.');
+  }
+
+  try {
+    await createUserToDb(rawFormData.name.toString(), rawFormData.group.toString(), rawFormData.email.toString(), rawFormData.no.toString(),rawFormData.password.toString())
+    // Perform any necessary post-request actions here
+    // For example: mutate data, revalidate cache, etc.
+    
+  } catch (error) {
+    console.error('Error creating location:', error);
+    throw new Error('Failed to create location.');
+  }
+  redirect('/dashboard/data-karyawan');
+}
+
 export async function createLocation(formData:FormData) {
 
 
