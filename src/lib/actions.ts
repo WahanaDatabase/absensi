@@ -2,7 +2,7 @@
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation'
-import { createLocationToDb } from './createLocation';
+import { createLocationToDb } from './createLocationToDb';
 export async function createLocation(formData:FormData) {
 
 
