@@ -5,7 +5,7 @@ function ButtonTambahLokasi() {
       <p className=" text-[#008767] pr-2 font-bold  text-[24px]">+</p>
 
       <Link
-        href={`/dashboard/registrasi-karyawan`}
+        href={`/dashboard/registrasi-lokasi`}
         className=" text-[#008767]   text-[14px]"
       >
         {" "}
