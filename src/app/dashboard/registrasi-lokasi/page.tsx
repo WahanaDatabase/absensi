@@ -2,27 +2,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import QRCode from "qrcode.react";
+import { createLocation } from "@/lib/actions";
 
 function Page() {
   const [locationName, setLocationName] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
 
   const handleLocationNameChange = (e: any) => {
     setLocationName(e.target.value);
-  };
-
-  const handleLatitudeChange = (e: any) => {
-    setLatitude(e.target.value);
-  };
-
-  const handleLongitudeChange = (e: any) => {
-    setLongitude(e.target.value);
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    // Add your submit logic here
   };
 
   return (
@@ -32,7 +18,7 @@ function Page() {
         <div className="flex">
           <div className="flex-1">
             <h2 className="text-xl font-bold mb-5">Data Lokasi</h2>
-            <form className="space-y-5" onSubmit={handleSubmit}>
+            <form className="space-y-5" action={createLocation}>
               <div>
                 <input
                   type="text"
@@ -40,6 +26,7 @@ function Page() {
                   className="w-full border-b border-gray-300 px-3 py-2 mt-1"
                   value={locationName}
                   onChange={handleLocationNameChange}
+                  name="name"
                 />
               </div>
               <div>
@@ -47,8 +34,7 @@ function Page() {
                   type="text"
                   placeholder="Latitude"
                   className="w-full border-b border-gray-300 px-3 py-2 mt-1"
-                  value={latitude}
-                  onChange={handleLatitudeChange}
+                  name="lat"
                 />
               </div>
               <div>
@@ -56,8 +42,7 @@ function Page() {
                   type="text"
                   placeholder="Longitude"
                   className="w-full border-b border-gray-300 px-3 py-2 mt-1"
-                  value={longitude}
-                  onChange={handleLongitudeChange}
+                  name="long"
                 />
               </div>
               <div>
