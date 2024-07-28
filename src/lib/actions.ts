@@ -4,6 +4,8 @@ import { AuthError } from 'next-auth';
 import { redirect } from 'next/navigation'
 import { createLocationToDb } from './createLocationToDb';
 import { createUserToDb } from './createUserToDb';
+
+const bcrypt = require('bcryptjs');
 export async function createUser(formData:FormData) {
 
 
@@ -19,15 +21,25 @@ export async function createUser(formData:FormData) {
   if (!rawFormData.name || !rawFormData.group || !rawFormData.email || !rawFormData.no|| !rawFormData.password ) {
     throw new Error('All form fields must be filled out.');
   }
+try {
+    // Hash the password
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(rawFormData.password.toString(), saltRounds);
 
-  try {
-    await createUserToDb(rawFormData.name.toString(), rawFormData.group.toString(), rawFormData.email.toString(), rawFormData.no.toString(),rawFormData.password.toString())
+    await createUserToDb(
+      rawFormData.name.toString(),
+      rawFormData.group.toString(),
+      rawFormData.email.toString(),
+      rawFormData.no.toString(),
+      hashedPassword
+    );
+
     // Perform any necessary post-request actions here
     // For example: mutate data, revalidate cache, etc.
-    
+
   } catch (error) {
-    console.error('Error creating location:', error);
-    throw new Error('Failed to create location.');
+    console.error('Error creating user:', error);
+    throw new Error('Failed to create user.');
   }
   redirect('/dashboard/data-karyawan');
 }
