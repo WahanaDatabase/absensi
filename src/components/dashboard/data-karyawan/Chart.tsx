@@ -177,7 +177,7 @@ const Charts = (attendances: any) => {
   const weeklyData = getWeeklyData(attendances.attendances);
   const monthlyData = getMonthlyData(attendances.attendances);
   return (
-    <div className="charts flex space-x-[15px] mt-[37px] ml-[71px]  mx-auto w-3/2">
+    <div className="charts flex space-x-[15px] mt-[37px] ml-[71px]  justify-center  mx-auto w-3/2">
       <div className="weekly-chart w-[645px] shadow-sm h-[351px] rounded-[30px] bg-white p-7         ">
         <h2>Data Absen Mingguan</h2>
         <Bar data={weeklyData} options={barOptions} />
