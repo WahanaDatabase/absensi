@@ -194,7 +194,7 @@ function Absensi({ attendances }: any) {
   };
 
   return (
-    <div className="mb-10 flex flex-col">
+    <div className="mb-10 flex justify-center flex-col">
       <div className="mt-[12px] bg-white flex w-[968px] px-12 py-3 mx-auto rounded-[30px] shadow-sm justify-between">
         <div className="flex space-x-8">
           <div className="bg-white justify-center flex items-center">
@@ -244,7 +244,7 @@ function Absensi({ attendances }: any) {
           </div>
         </div>
       </div>
-      <div className="w-[968px] mt-[15px] shadow-sm ml-[71px] rounded-[30px] bg-white p-7">
+      <div className="w-[968px]  flex flex-col mx-auto mt-[15px] shadow-sm  rounded-[30px] bg-white p-7">
         <div className="flex justify-between items-center mb-4">
           <ShowEntries
             entriesToShow={entriesToShow}
