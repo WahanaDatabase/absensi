@@ -5,7 +5,9 @@ async function Page() {
   const attendances = await getAttendancesFromDb();
   return (
     <div className="flex-1 bg-[#FAFBFF]">
-      <div className="text-[24px]  pt-[41px] pl-[71px]">Laporan Absensi</div>
+      <div className="text-[24px] font-semibold  pt-[41px] pl-[71px]">
+        Laporan Absensi
+      </div>
       <Absensi attendances={attendances} />
     </div>
   );
