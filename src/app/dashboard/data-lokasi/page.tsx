@@ -8,8 +8,10 @@ async function page() {
   return (
     <div className="flex-1 bg-[#FAFBFF]">
       <div className="text-[24px]  pt-[41px] pl-[71px]">Data Karyawan</div>
-      <ButtonTambahLokasi />
-      <Table locations={locations} />
+      <div className="flex items-center flex-col">
+        <ButtonTambahLokasi />
+        <Table locations={locations} />
+      </div>
     </div>
   );
 }

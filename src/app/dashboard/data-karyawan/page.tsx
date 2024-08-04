@@ -10,11 +10,13 @@ async function Page() {
   const users = await getUsersFromDb();
 
   return (
-    <div className="flex-1 bg-[#FAFBFF]">
+    <div className="flex-1     bg-[#FAFBFF]">
       <div className="text-[24px]  pt-[41px] pl-[71px]">Data Karyawan</div>
-      <ButtonTambahKaryawan />
+      <div className="flex items-center flex-col">
+        <ButtonTambahKaryawan />
 
-      <Table users={users} />
+        <Table users={users} />
+      </div>
     </div>
   );
 }
