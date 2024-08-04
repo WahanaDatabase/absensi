@@ -7,7 +7,9 @@ async function page() {
   const locations = await getLocationsFromDb();
   return (
     <div className="flex-1 bg-[#FAFBFF]">
-      <div className="text-[24px]  pt-[41px] pl-[71px]">Data Karyawan</div>
+      <div className="text-[24px] font-semibold  pt-[41px] pl-[71px]">
+        Data Lokasi
+      </div>
       <div className="flex items-center flex-col">
         <ButtonTambahLokasi />
         <Table locations={locations} />
