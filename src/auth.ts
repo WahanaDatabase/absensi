@@ -23,7 +23,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async authorize(credentials) {
   try {
         // logic to salt and hash password
-        const pwHash = await saltAndHashPassword(credentials.password)
+        // const pwHash = await saltAndHashPassword(credentials.password)
      
         // logic to verify if user exists
        const user = await getUserFromDbByEmail(credentials.email)
