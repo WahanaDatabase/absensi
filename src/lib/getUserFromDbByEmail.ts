@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient();
 
-export async function getUserFromDbByEmail(email: string) {
+export async function getUserFromDbByEmail(email:any) {
   try {
     const user = await prisma.user.findUnique({
       where: {
