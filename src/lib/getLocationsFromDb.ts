@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from './client'
 
 export async function getLocationsFromDb() {
   const location = await prisma.location.findMany()

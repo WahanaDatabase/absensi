@@ -1,6 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from './client'
 export async function createLocationToDb(name:string, lat:number, long:number, qr:string) {
 
 

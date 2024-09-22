@@ -1,7 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-
-
-const prisma = new PrismaClient()
+import { prisma } from './client'
 export async function createUserToDb(name:string, group:string, email:string, no:string,password:string) {
 
 
