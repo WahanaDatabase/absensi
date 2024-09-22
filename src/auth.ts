@@ -32,7 +32,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           // meaning this is also the place you could do registration
           throw new Error("User not found.")
         }
-      const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+      const isPasswordValid = await bcrypt.compare(pwHash, user.password);
           if (!isPasswordValid) {
             throw new Error("Invalid password.");
           }
