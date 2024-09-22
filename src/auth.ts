@@ -1,7 +1,7 @@
 
 import NextAuth from "next-auth"
  import Credentials from "next-auth/providers/credentials"
-import { getUserFromDb } from "./lib/getUserFromDb";
+import { getUserFromDbByEmail } from "./lib/getUserFromDbByEmail";
 
 const bcrypt = require('bcryptjs');
 
@@ -26,7 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         const pwHash = await saltAndHashPassword(credentials.password)
      
         // logic to verify if user exists
-       const user = await getUserFromDb(credentials.email)
+       const user = await getUserFromDbByEmail(credentials.email)
         if (!user) {
           // No user found, so this is their first attempt to login
           // meaning this is also the place you could do registration
